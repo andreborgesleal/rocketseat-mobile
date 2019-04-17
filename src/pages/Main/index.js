@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
-import { View } from 'react-native';
-
-// import { Container } from './styles';
+import { View, Text} from 'react-native';
 
 export default class Main extends Component {
   render() {
-    return <View />;
+    return (
+      <View>
+          <Text>Olá mundo !</Text>
+      </View>);
   }
 }
