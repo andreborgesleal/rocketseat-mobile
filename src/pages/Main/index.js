@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // TouchableOpacity (botão estilizado/customizado)
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
@@ -15,6 +16,7 @@ export default class Main extends Component {
     const response = await api.post("boxes", {
       title: this.state.newBox
     });
+    await AsyncStorage.setItem('@RocketBox:box', response.data._id); // armazena localmente o ID do Box criado, onde @RocketBox eh nome da aplicação e box é a chave. O corpo da chave  vai conter o ID do box criado
     this.props.navigation.navigate("Box");
 
     //this.props.history.push(`/box/${response.data._id}`); // redireciona para a página "box" passando o id do box criado
@@ -38,7 +40,7 @@ export default class Main extends Component {
           <TouchableOpacity onPress={this.handleSignIn} style={styles.button}>
             <Text style={styles.buttonText}>Criar</Text>
           </TouchableOpacity> 
-          <Text>Olá mundo !</Text>
+          <Text fontSize="8">DWM</Text>
       </View>);
   }
 }
