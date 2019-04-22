@@ -12,6 +12,13 @@ export default class Main extends Component {
     newBox: '',
   };
 
+  async componentDidMount() {
+    const box = await AsyncStorage.getItem('@RocketBox:box');
+    if (box) {
+      this.props.navigation.navigate("Box");  
+    }
+  }
+
   handleSignIn = async() => {
     const response = await api.post("boxes", {
       title: this.state.newBox
@@ -21,7 +28,8 @@ export default class Main extends Component {
 
     //this.props.history.push(`/box/${response.data._id}`); // redireciona para a página "box" passando o id do box criado
     //console.log(response.data); // retorna o json com os dados da box criada (o mesmo mostrado no insognia)
-  }
+  };
+  
   render() {
     return (
       // View equivalente à div no html
